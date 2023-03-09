@@ -51,8 +51,8 @@ worker-dd46d7584-sxgnl    1/1     Running   0          5m58s
 
 
  Observation-1:
- ============
-  On restarting of vote app pod -
+ =============
+  On terminating of vote app pod -
 On the front end - vote app old pod vote-94849dc97-ms7m4  name has been removed from wave page updated by new respawned pod. Voting procedure is not affected. 
   Web page is still accepting vote and reflecting on result wave page. 
 On the backend - Old vote app vote-94849dc97-ms7m4  pod is terminated New vote app pod vote-94849dc97-mt8ch has been respawned. No pod restart is seen.
@@ -69,6 +69,11 @@ vote-94849dc97-mt8ch      1/1     Running   0          110s
 worker-dd46d7584-sxgnl    1/1     Running   0          8m19s
 
 Observation-2:
+=============
+  On terminating of worker pod worker-dd46d7584-sxgnl -
+On the front end - Voting procedure is not affected. Voter count remain same.
+  Web page is still accepting vote and reflecting on result wave page. 
+On the backend - Old worker pod worker-dd46d7584-sxgnl is terminated and New worker pod worker-dd46d7584-8h9qs has been respawned. No pod restart is seen.
 
 [root@ip-172-31-3-120 k8s-specifications]# kubectl delete po worker-dd46d7584-sxgnl
 pod "worker-dd46d7584-sxgnl" deleted
@@ -81,8 +86,11 @@ vote-94849dc97-mt8ch      1/1     Running   0          2m25s
 worker-dd46d7584-8h9qs    1/1     Running   0          23s
 [root@ip-172-31-3-120 k8s-specifications]#
 
-on front end - nothing changes - results are available if you change vote candidate
-on back end new worker mode has respawned and old has been terminated 
+Observation-3:
+ On terminating of db pod db-b54cd94f4-6vt7t -
+on front end - Voter app pod vote submission was not getting updated in db and same updated result was not visible at result app pod for some time until new db pod db-b54cd94f4-6vt7t was respawned  .   
+on back end - Old db pod db-b54cd94f4-kp8cd was terminated and new db pod db-b54cd94f4-6vt7t was respawned. Also containers of worker pod app and result app has restarted and only after that results have been keeping updated/reflected on result pod web page. Old db data was lost.
+
 [root@ip-172-31-3-120 k8s-specifications]# kubectl delete po db-b54cd94f4-kp8cd
 pod "db-b54cd94f4-kp8cd" deleted
 [root@ip-172-31-3-120 k8s-specifications]# kubectl get po
