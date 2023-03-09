@@ -87,6 +87,7 @@ worker-dd46d7584-8h9qs    1/1     Running   0          23s
 [root@ip-172-31-3-120 k8s-specifications]#
 
 Observation-3:
+=============
  On terminating of db pod db-b54cd94f4-6vt7t -
 on front end - Voter app pod vote submission was not getting updated in db and same updated result was not visible at result app pod for some time until new db pod db-b54cd94f4-6vt7t was respawned  .   
 on back end - Old db pod db-b54cd94f4-kp8cd was terminated and new db pod db-b54cd94f4-6vt7t was respawned. Also containers of worker pod app and result app has restarted and only after that results have been keeping updated/reflected on result pod web page. Old db data was lost.
