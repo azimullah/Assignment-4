@@ -103,5 +103,3 @@ vote-94849dc97-mt8ch      1/1     Running   0          9m23s
 worker-dd46d7584-8h9qs    1/1     Running   1          7m21s
 [root@ip-172-31-3-120 k8s-specifications]#
 
-on front-end: vote is not updated on screen
-on back-end: result and worker nodes have restarted 
